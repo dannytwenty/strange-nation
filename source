@@ -1,0 +1,66 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+int check(int);
+int main()
+{
+	int counter;
+	int answer;
+	vector<int>answervec;
+	cin >> counter;
+	for (int i = 0; i < counter; i++) {
+		int num;
+		cin >> num;
+		answervec.push_back(check(num));
+	}
+	for (int i = 0; i < counter; i++) {
+		cout << answervec[i] << endl;
+	}
+	return 0;
+}
+int check(int num) {
+	int hun;
+	int ten;
+	int one;
+	for (int a = 0; a <= 15; a++) {
+		for (int b = 0; b <= 15; b++) {
+			for (int c = 0; c <= 15; c++) {
+				if (a < 3) {
+					hun = 0;
+				}
+				else {
+					hun = a * (a - 1) * (a - 2) / 6;
+				}
+				if (b < 2) {
+					ten = 0;
+				}
+				else {
+					ten = b * (b - 1) / 2;
+				}
+				if (c < 1) {
+					one = 0;
+				}
+				else {
+					one = c;
+				}
+				if (a <= b || b <= c || a <= c) {
+					break;
+				}
+				if (num == hun + ten + one) {
+					if (b >= 10 && c >= 10) {
+						return a * 10000 + b * 100 + c;
+					}
+					else if (b >= 10) {
+						return a * 1000 + b * 10 + c;
+					}
+					else if (c >= 10) {
+						return a * 1000 + b * 100 + c;
+					}
+					else {
+						return a * 100 + b * 10 + c;
+					}
+				}
+			}
+		}
+	}
+}
